@@ -1,0 +1,240 @@
+\documentclass{article}
+\usepackage[top=30truemm,bottom=30truemm,left=20truemm,right=20truemm]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage {diagbox}
+\usepackage{here}
+\usepackage{url}
+\pgfplotsset{compat=newest}
+\newlength\figHeight
+\newlength\figWidth
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{graphicx,color}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{siunitx}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+
+\theoremstyle{plain}
+\newtheorem{note}{Note}
+\newtheorem*{note*}{Note}
+\numberwithin{equation}{section}
+\numberwithin{theorem}{section}
+\numberwithin{definition}{section}
+\numberwithin{note}{section}
+\hypersetup{%
+setpagesize=false,
+ bookmarksnumbered=true,%
+ bookmarksopen=true,%
+ colorlinks=false,%
+ linkcolor=blue,
+ citecolor=red,
+}  
+
+
+\pagestyle{fancyplain}
+     \chead{群論}
+     \lhead{数学の花} 
+     \rhead{\thepage} 
+     \lfoot{}
+     \rfoot{} 
+     \cfoot{\thepage}
+\renewcommand\plainheadrulewidth{.4pt}% headrule on plain pages
+\author{}
+\title{群論}
+\makeatletter
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
+\makeatother
+\begin{document}
+\maketitle
+%\setcounter{tocdepth}{2}
+%\setcounter{chapter}{0}
+
+% 目次の見出しだけデザインを変える
+
+\tableofcontents
+
+\clearpage
+%\renewcommand{\thesection}{\Roman{section}}
+
+\section{二項演算の定義}
+集合$S\neq \emptyset$ を考える。$\forall a,b\in S$ に対して$\exists c \in S$ を対応させる法則つまり直積$S\times S$から$S$への写像を2項演算(law of composition)と呼ぶ. 記号的には
+\begin{align}
+     S\times S & \to S              \\
+     (a,b)     & \mapsto a\cdot b=c
+\end{align}
+と表現される.
+\section{群の定義}
+集合$G\neq \emptyset$について, 2項演算
+\begin{align}
+     G\times G & \to G              \\
+     (a,b)     & \mapsto a\cdot b=c
+\end{align}
+が与えられていて, 次の3つの条件を満たすとき, $G$を群と呼ぶ.\\
+\vskip\baselineskip
+\noindent
+G1. \emph{結合法則} (associative law)$\forall a,b,c \in G$について
+
+\begin{align}
+     a\cdot (b\cdot c)=(a\cdot b)\cdot c
+\end{align}\\
+G2. \emph{単位元の存在} ある$e\in G$が存在して, $\forall a\in G$について
+\begin{align}
+     e\cdot a=a\cdot e=a
+\end{align}
+
+この$e$をGの\emph{単位元}(unit element)という.\\
+G3. \emph{逆元の存在} $\forall a\in G$についてある$b\in G$が存在して
+
+\begin{align}
+     a\cdot b=b\cdot a=e
+\end{align}
+
+となる. この$b$を$a$の\emph{逆元}(inverse element)とよび,$a^{-1}$と表記する.
+\begin{definition}
+     群$G$の元の個数を$\lvert G\rvert$と表記してGの位数とよぶ.
+\end{definition}
+
+\section{様々な概念}
+二項演算$(G,\cdot),(G,+)$について
+\begin{enumerate}
+     \item $(G,\cdot)$が半群: G1つまり結合法則が成立するもの
+     \item $(G,\cdot)$がモノイド: G1とG2つまり結合法則が成立し単位元が存在するもの.
+
+     \item 群$(G,\cdot)$が可換群, アーベル群: 群に\emph{交換法則}を追加したもの. つまり, $\forall a,b\in G$について$a\cdot b=b\cdot a$が成立
+     \item $(G,+,\cdot)$が環: $(G,+)$が可換群$(G,\cdot)$がモノイド
+     \item $(G,+,\cdot)$が可換環: 環$(G,+,\cdot)$について$(G,\cdot)$で交換法則が成立する
+     \item $(G,+,\cdot)$が整域: 可換環$(G,+,\cdot)$について$(G,\cdot)$が\emph{零因子}をもたない.
+     \item $(G,+,\cdot)$が斜体: 環$(G,+,\cdot)$について$(G,+)$の単位元$0$以外の元が$(G,\cdot)$において\emph{単元}である. つまり$(G,\cdot)$についてG3逆元をもつ
+     \item $(G,+,\cdot)$が体: $(G,+,\cdot)$が可換環かつ斜体
+\end{enumerate}
+
+\section{群の性質}
+\begin{theorem}
+     群$(G,\cdot)$に対して単位元はただ一つ存在
+\end{theorem}
+
+証明: $e,e'\in G$を$G$の単位元としたとき($e$を群の定義から保証された単位元$e$に対してもう1つの単位元$e'$を考える)
+
+\begin{align}
+     e=ee'=e'
+\end{align}
+
+が成立.
+\begin{theorem}
+     群$(G,\cdot)$に対して逆元はただ一つ存在
+\end{theorem}
+
+
+証明: $\forall a\in G$についてある$b,c\in G$を$a$の逆元とすると
+
+\begin{align}
+     b=be=bac=ec=c
+\end{align}
+
+が成立.
+
+\begin{definition}
+     群Gについて$\forall a,b\in G$に対して,$ab=ba$を満たすとき, $G$を\emph{可換群}(commutative group)または
+     \emph{アーベル群}(abelian group)とよぶ.
+\end{definition}
+\begin{definition}
+     群$G$に含まれる位数の数を$G$の\emph{位数}(order)とよび, $\lvert G\rvert$と表現する.
+\end{definition}
+\begin{definition}
+     $G$の位数が有限のとき$G$を\emph{有限群}(finite group), 無限のときは$G$を\emph{無限群}とよぶ.
+\end{definition}
+\section{部分群}
+\begin{definition}\label{def::subgroup}
+     群$G$の空でない部分集合$H$が$G$の二項演算によって群になるとき, $H$を$G$の\emph{部分群}(sub group)とよぶ.
+\end{definition}
+\begin{note}
+     $G$の二項演算によって群になるとは演算$\cdot': H\times H\to H$が存在して, $\forall a,b\in H$について$a\cdot b=a\cdot' b$(よく似ていることの言い換え)となり, $(H,\cdot')$が群になること.
+\end{note}
+\begin{note}
+     「群$(G,\cdot)$について$(H,\cdot)$が部分群であるとは$\emptyset\subsetneq H\subseteq G$かつ$(H,\cdot)$が群である.」は間違い.
+\end{note}
+(理由) $\cdot: G\times G\to G$であり, $\forall a,b\in H$について$a\cdot b\in H$は示されていない.\\
+
+\par Definition~\ref{def::subgroup}を言い換たものが Definition~\ref{def::subgroup1}である.
+\begin{definition}\label{def::subgroup1}
+     群$(G,\cdot)$について$(H,\cdot )$が部分群であるとは以下すべてを満たすことである.
+     \begin{enumerate}
+          \item $\forall a,b\in H$に対して$a\cdot b\in H$.
+          \item $\exists e \in H$, $\forall a \in H$に対して$a\cdot e=e\cdot a=a$.
+          \item $\forall a \in H$, $\exists b\in H$に対して$a\cdot b=b\cdot a=e$.
+          \item $\emptyset\subsetneq H\subset G$
+     \end{enumerate}
+\end{definition}
+\begin{theorem}\label{thm::subgroup}
+     $(G, \cdot)$を群とし, $\emptyset\subsetneq H\subseteq G$とする. このとき, $(H, \cdot)$が$G$の部分群であることは, 以下が両方成立することに同値:
+     \begin{enumerate}
+          \item[SG1.]  $\forall a, b\in G$. $a, b\in H\implies a\cdot b\in H$
+          \item[SG2.]  $\forall a\in G$. $a\in H \implies a^{-1}\in H$
+     \end{enumerate}
+\end{theorem}
+(証明)
+$\implies$: $(H, \cdot)$が$G$の部分群であるとする.\\
+\begin{itemize}
+     \item SG1はDefnition~\ref{def::subgroup1}の1より成立.
+     \item SG2はDefnition~\ref{def::subgroup1}の3より成立.
+\end{itemize}
+$\impliedby$: (SG1), (SG2)が成立しているとする.
+\begin{itemize}
+     \item 定義よりDefnition~\ref{def::subgroup1}の4が成立.
+     \item  SG1よりDefnition~\ref{def::subgroup1}の1が成立.
+     \item SG2よりDefnition~\ref{def::subgroup1}の3が成立.
+     \item $\forall a\in H$についてSG1,SG2より$a^{-1}\in H$, $a\cdot a^{-1}=e$.
+\end{itemize}
+\begin{theorem}
+     $H$を群$G$の部分群としたとき, $H$の単位元$e'$は$G$の単位元と一致する.
+\end{theorem}
+(証明) ある$x\in G$が存在して$e'x=xe'=e$になるとする. $e'=e'e=e'e'x=e'x=e$.
+\begin{theorem}
+     $H$を群$G$の部分群としたとき, $\forall a\in H$について$H$における逆元$a_H^{-1}$と$G$における逆元$a_G^{-1}$は一致する.
+\end{theorem}
+(証明) $a_G^{-1}=ea_G^{-1}=a_H^{-1}aa_G{-1}=a_H^{-1}e=a_H^{-1}$.
+\begin{theorem}\label{them::subgroup3}
+     群Gの部分集合$H\neq \emptyset$に対し, 以下の3条件は同値である.
+     \begin{enumerate}
+          \item $H$は$G$の部分群.
+          \item $\forall a,b \in H$に対して$ab\in H$かつ$ a^{-1}\in H$.
+          \item $\forall a,b \in H$に対して$a^{-1}\cdot b\in H$.
+     \end{enumerate}
+\end{theorem}
+(証明) $1\implies 2$は部分群の定義から明らか. $2\implies 3$も明らか.
+$2\implies 1$は Theorem~\ref{thm::subgroup}と同じである.
+よって$3\implies 2$を示せばよい.
+$\forall a\in H$について$e=a^{-1}\cdot a\in H$が成立. ここで$a^{-1}\in G$は$a^{-1}\cdot a^{-1}\cdot a=a^{-1}\cdot e \in H$より$a^{-1}e=a^{-1}\in H$.
+よって$\forall a,b \in H$について$a^{-1}\in H$となり$a\cdot b=(a^{-1})^{-1}\cdot b\in H$.
+\begin{theorem}
+     $H_1$,$H_2$を群$G$の部分群とするならば, $H_1\cap H_2$も$G$の部分群である.
+\end{theorem}
+(証明) $\forall a,b\in H_1\cap H_2$について $a\cdot b\in H_1$かつ$a\cdot b\in H_2$. よって$a\cdot b\in H_1\cap H_2$.
+また$a^{-1}\in H_1$かつ$a^{-1}\in H_2$. よって$a^{-1}\in H_1\cap H_2$. したがって$H_1\in H_2$は$G$の部分群となる.
+\begin{theorem}
+     Gを群とし$\emptyset \subsetneq H\subseteq G$とする。このとき以下3条件は互いに同値
+     \begin{enumerate}
+          \item HはGの部分群
+          \item $(HH\subseteq H)$かつ$H^{-1}\subseteq H$
+          \item $H^{-1}H\subseteq H$
+     \end{enumerate}
+\end{theorem}
+(証明) これは Theorem~\ref{them::subgroup3}の言い換えである.
+\begin{definition}
+     Gを群としSをGの部分集合とする。このときSを含む最小の部分群を$\langle S \rangle$と書く。これをSから生成される部分群と呼ぶ.
+\end{definition}
+
+\end{document}
