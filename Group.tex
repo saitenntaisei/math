@@ -268,7 +268,7 @@ $\forall x \in G$について$x^{-1}\in G$より$x^{-1}N(x^{-1})^{-1}\subseteq N
 \begin{theorem}
      $G$を群, $H$を$G$の部分群とする. このとき次が成立する.
      \begin{enumerate}
-          \item $G\rhd H\Leftrightarrow N(H)=G$
+          \item $G\rhd H\iff N(H)=G$
           \item $G\supseteq N(H)\rhd H$
           \item $G\rhd Z(G)$
      \end{enumerate}
@@ -292,9 +292,57 @@ $\forall x \in G$について$x^{-1}\in G$より$x^{-1}N(x^{-1})^{-1}\subseteq N
      \begin{align}
           H:=\lbrace a^n\mid n\in \mathbb{Z}\rbrace
      \end{align}
-     としたとき$H=\langle a\rangle$とかき, $a$から生成される元$H$とよぶ. $H$の位数を$a$の\emph{位数}とよび $\mathrm{ord}\,a$とかく. $\mathrm{ord}\,a$が有限なとき$a^n=e$となるような$n$と等しい. $G=\langle a\rangle$となるとき$G$を\emph{巡回群}とよび, $a$を$G$の\emph{生成元}という. 巡回群は可換群であることは明らか.
+     としたとき$H=\langle a\rangle$とかき, $a$から生成される元$H$とよぶ. $H$の位数を$a$の\emph{位数}とよび $\mathrm{ord}\,a$とかく. $\mathrm{ord}\,a$が有限なとき$a^n=e$となるような最小の自然数$n$と等しい. $G=\langle a\rangle$となるとき$G$を\emph{巡回群}とよび, $a$を$G$の\emph{生成元}という. 巡回群は可換群であることは明らか.
 \end{definition}
 \begin{note}
      巡回群の生成元は一意に決まらない. $\mathbb{Z}=\langle 1\rangle=\langle-1\rangle$.
 \end{note}
+\begin{theorem}
+     巡回群の部分群は巡回群である.
+\end{theorem}
+(証明) 巡回群$G$と$G$の部分群を$H$とする. $H=\lbrace e\rbrace$であるとき$H$は明らかに巡回群である.
+$H\neq \lbrace e\rbrace$とする. $G$の生成元を$a$とし, $a^n\in H$となるような$n$のうち最小なものについて考える. $\forall a^m \in H$について, 剰余の定理より$m=qn+r$である. 
+よって$a^r= a^m\cdot a^{-qn}$であるが, $n$の最小性より$r>0$ならば$r\geq n$であるので$r=0$.
+すなわち$H=\langle a^n\rangle$である.
+\begin{definition}
+     $n,t$を2つの整数とする. $n$が$t$で割り切るとき$n\mid t$とかく.
+\end{definition}
+\begin{theorem}\label{them::n|t}
+     群$G$の元$x$が$\mathrm{ord}\, x=n <\infty$であるとする. 整数$t$に対し$x^t=e$となるための必要十分条件は$n\mid t$となることである.
+\end{theorem}
+(証明)$n$の定義より$t\leq n$である. 剰余の定理より$t=nq+r$である. よって$e=a^t=a^{nq}\cdot a^r=e\cdot a^r=a^r$となる. $n$の最小性より$r> 0$ならば$r\geq n$であるので$r=0$. よって$n\mid t$.
+\begin{theorem}
+    $G=\langle a\rangle$を位数$n<\infty$(有限) の巡回群とする. $m\mid n$となる自然数$m$に対し, 位数$m$の部分群が唯一つ存在する. 
+\end{theorem}
+(証明) $m\mid n$となる$m$について$\langle n/m\rangle$は位数$m$の部分群である. もうひとつ位数$m$の部分群$H$があるとする. $a^k\in H$となるような最小の自然数$k$をとると$H=\langle a^k \rangle$となる. $\mathrm{ord}\, a^k=m$より$a^{km}=e$となる. このとき定理~\ref{them::n|t}より $n\mid km$である. $m\mid n$より$(n/m)\mid k$となる. $k= tn/m$とすると，$(a^{k/t})^m=e$となる. $k$の最小性より$t=1$となる. よって$k=n/m$. 位数$m$の部分群が唯一つしか存在しないことが示された.
+\section{剰余類}
+\begin{definition}
+     集合$S$において, 関係$\sim$が定義されていて, 任意の二元$x,y\in S$に対し$x\sim y$または$x\sim y$でないかが成立し, かつ次の3条件を満たすとき関係$\sim$を同値関係という.
+     \begin{enumerate}
+          \item \emph{対称律} $x\sim y\iff y\sim x$
+          \item \emph{遷移律}$x\sim y \land y\sim z \implies x\sim z$
+          \item \emph{反射律}$x\sim x$
+     \end{enumerate}
+\end{definition}
+集合$S$に同値関係が与えられていれば, その関係によって関係がある元全体をグループにすることにより, $S$をグループ分けできる. このようにして得られる類 (グループ) 全体の集合を$S/\sim$と書く.
+
+\begin{definition}~\label{def::sim}
+     $G$を群, $H$を$G$の部分群とする.
+     \begin{align}
+          \forall a,\forall b\in G, a^{-1}b\in H\quad\mathrm{then}\quad a\sim b
+     \end{align}
+     と定義し, $a$は$b$に\emph{左合同}であるという. 左合同は同値関係である. 
+\end{definition}
+\begin{definition}
+     定義~\ref{def::sim}の同値関係によって群$G$を類別し, その同値類全体の集合を$G/H$と書く. $G/H$の元を$G$の$H$による左剰余類という. $\forall a\in G$を含む左同値類は
+     \begin{align}
+          C_a=\lbrace x\in G\mid a^{-1}x\in H\rbrace=aH
+     \end{align}
+     で与えられる. $C_a=C_b\iff a\sim b$である.
+\end{definition}
+\begin{definition}
+     $G$の$H$による左同値類の数を$(G:H)$または$\lvert G/H\rvert$と書き, $G$の$H$における\emph{指数}という. 指数は$\infty$である場合もある.
+\end{definition}
+
+
 \end{document}
