@@ -407,5 +407,35 @@ $a_\lambda b_\mu K=a_{\lambda'}b_{\mu'}K$とする. ある$k\in K$が存在し�
      $G$を群, $G\rhd N$とする. $\lbrace a_\lambda\rbrace_{\lambda\in \Lambda}$が$G$の$N$に関する左完全代表系であるための必要十分条件は, $\lbrace a_\lambda\rbrace_{\lambda\in \Lambda}$が$G$の$N$に関する右完全代表系であることである.
 \end{theorem}
 (証明) $G=\coprod_{\lambda\in \Lambda}a_\lambda N=\coprod_{\lambda\in \Lambda}N a_\lambda$.
+\subsection{剰余群}
+\begin{definition}
+     $G$を群, $G\rhd N$とする. このとき, 左剰余類の集合$G/N$には次のように自然に\emph{積を定義する}ことができる: $aN$と$bN$の積を,
+     \begin{align}
+          aN\cdot bN=abN
+     \end{align}
+     で定義する. この積が代表元のとり方によらず一意的に定まることを示す.
 
+     (証明) $a'$を類$aN$のもう一つの代表元, $b'$を類$bN$のもう一つの代表元とする.
+     このとき$aN=a'N$,$bN=b'N$であり, $a'=an_1$, $b'=bn_2$となるような$n_1,n_2\in N$が存在する.
+     よって$a'N\cdot b'N=a'b'N=an_1bn_2N=ab(b^{-1}n_1b)N=ab$. となり, 積は一意的に定まることが分かる.
+
+     この席によって, $G/N$は群になる. この群を$G$の正規部分群$N$に関する\emph{剰余群}または\emph{商群}という. $G/N$の単位元は$eN=N$であり, 元$aN$の逆元は$a^{-1}N=N$である. 
+\end{definition}
+\begin{note}
+     $G$がアーベル群であれば$G$の任意の部分群$N$について$G\rhd N$となる.
+\end{note}
+(証明) $\forall x \in G$について$xNx^{-1}=x\cdot x^{-1}N=N$
+\begin{note}
+     $G$をアーベル群であれば$G$の任意の部分群$N$に関する剰余群もアーベル群である.
+\end{note}
+(証明) $\forall aN,bN\in G/N$について$aN\cdot b N=ab N=baN=bN\cdot aN$
+\section{準同型写像}
+\begin{definition}
+     $G$,$G'$を群とする. 写像$f\colon G\to G'$が
+     \begin{align}
+          \forall x.y\in G, f(xy)=f(x)f(y)
+     \end{align} 
+     を満たすとき, $f$を\emph{準同型写像}という.
+\end{definition}
+全射準同型写像かつ単射準同型写像であるものは同型写像といい$G\cong G$とかく. 同型な群の代数構造はまったく同じである.
 \end{document}
