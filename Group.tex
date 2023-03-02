@@ -341,8 +341,71 @@ $H\neq \lbrace e\rbrace$とする. $G$の生成元を$a$とし, $a^n\in H$とな
      で与えられる. $C_a=C_b\iff a\sim b$である.
 \end{definition}
 \begin{definition}
-     $G$の$H$による左同値類の数を$(G:H)$または$\lvert G/H\rvert$と書き, $G$の$H$における\emph{指数}という. 指数は$\infty$である場合もある.
+     $G$の$H$による左同値類の数を$(G:H)$または$\lvert G/H\rvert$と書き, $G$の$H$における\emph{指数}という. 指数は$\infty$である場合もある. 各類から1個ずつ代表元をとってきて, それら全体のなす集合を$G$の$H$に関する\emph{左完全代表系}という. それを$\lbrace a_\lambda\rbrace_{\lambda \in \Lambda}$とすれば
+     \begin{align}
+          G=\bigcup_{\lambda\in \Lambda} a_\lambda H
+     \end{align}
+     と書ける. $\lvert \Lambda\rvert=(G:H)$であるのは定義より明らか.
 \end{definition}
+\begin{theorem}
+     $G$を群, $H$をその部分群とするとき, $G$の$H$に関する左剰余類に含まれる元の数は全て等しく, $\lvert H\rvert$個である.
+\end{theorem}
+(証明) 写像
+\begin{align}
+     H&\to aH\\
+     x&\mapsto ax
+\end{align}
+は集合としての上への1対1写像である. したがって$\lvert aH\rvert =\lvert H\rvert$.
+\begin{theorem}\label{them::lagrange}
+     $G$を群, $H$をその部分群とするとき, $\lvert G\rvert=(G:H)\lvert H\rvert$が成り立つ. これはラグランジュの定理と呼ばれることがある.
+\end{theorem}
+(証明) $\lvert G\rvert=\bigcup_{\lambda\in \Lambda}\lvert a_\lambda H\rvert=\bigcup_{\lambda \in \Lambda}\lvert H\rvert=\lvert G/H\rvert \lvert H\rvert$
 
+\begin{theorem}
+     $G$を有限群, $H$をその部分群とすれば, 次が成立する.
+     \begin{enumerate}
+          \item $H$の位数$\lvert H\rvert$は$G$の位数$\lvert G\rvert$の約数である.
+          \item $G$の元の位数は$G$の位数$\lvert G\rvert$の約数である.
+     \end{enumerate}
+\end{theorem}
+(証明) 1は定理~\ref{them::lagrange}より明らか.
+2は$\forall a\in G$について$\langle a\rangle$は$G$の部分群となるので$\lvert \langle a\rangle \rvert$は$\lvert G\rvert$の約数. よって成立.
+
+\begin{theorem}
+     $G$を群, $H\supseteq K$をGの部分群とする. $\lbrace a_\lambda \rbrace_{\lambda \in \Lambda}$を$G$の$H$に関する左完全代表系, $\lbrace b_\mu \rbrace_{\mu \in M}$を$H$の$K$に関する左完全代表系とする. このとき$\lbrace a_\lambda b_\mu\rbrace_{\lambda\in \Lambda,\mu\in M}$は$G$の$K$に関する左完全代表系である.
+\end{theorem}
+(証明) $\forall x\in G$について, ある$a_\lambda$,$h\in H$が存在して, $x=a_\lambda h$となる. 同様にある$b_\mu$,$k\in K$が存在して, $h=b_\mu k$となる. したがって$x\in \lbrace a_\lambda b_\mu\rbrace K$である. つまり, $xK= \lbrace a_\lambda b_\mu\rbrace K$. 次に$\lbrace a_\lambda b_\mu K\rbrace_{\lambda\in \Lambda,\mu\in M}$は相異なる左剰余類を表すことを示す.
+$a_\lambda b_\mu K=a_{\lambda'}b_{\mu'}K$とする. ある$k\in K$が存在して$a_\lambda b_\mu=a_{\lambda'}b_{\mu'}k$となる. よって$a_\lambda=a_{\lambda'}(b_{\mu'}k{b_\mu}^{-1})$となるが$b_{\mu'}k{b_\mu}^{-1}\in H$となり, $G$に関する$H$の左完全代表系は相異なるので$a_\lambda=a_{\lambda'}$となる. よって$\lambda=\lambda'$となり, 同様にして$\mu=\mu'$も求められる. したがって$\lbrace a_\lambda b_\mu\rbrace_{\lambda\in \Lambda,\mu\in M}$は$G$の$K$に関する左完全代表系である. 
+\begin{theorem}
+     $G$を群, $H\supseteq K$を$G$の部分群とすれば,
+     \begin{align}
+          (G:K)=(G:H)(H:K)
+     \end{align}
+     が成り立つ.
+\end{theorem}
+(証明) $\lvert G/K\rvert =\lvert \bigcup_{\lambda\in \Lambda,\,\mu\in M}a_\lambda b_\mu\rvert=\lvert \bigcup_{\lambda\in \Lambda}a_\lambda\rvert\lvert \bigcup_{\mu\in M}b_\mu\rvert$
+
+\subsection{右との同値性}
+\emph{右合同}や\emph{右剰余類}の定義は省略する.
+\begin{theorem}
+     $G$を群, $H$をその部分群とする. $\lbrace a_\lambda\rbrace_{\lambda\in \Lambda}$が$G$の
+     $H$に関する左完全代表系であるための必要十分条件は, $\lbrace a_\lambda^{-1}\rbrace_{\lambda\in \Lambda}$が$G$の$H$に関する右完全代表系であることである.
+\end{theorem}
+(証明) 集合の直和を$\coprod$とかく. $G=G^{-1}$,$H=H^{-1}$より
+\begin{align}
+     G=\coprod_{\lambda\in \Lambda}a_\lambda H=\coprod_{\lambda\in \Lambda}(a_\lambda H)^{-1}=\coprod_{\lambda\in \Lambda}H^{-1}a_\lambda^{-1}
+\end{align}
+となる.
+
+\begin{theorem}
+     $G$を群, $G\rhd N$とする. $G$の$N$に関する右剰余類と左剰余類は一致する. 
+     詳しくは$xN=Nx$が成立する.
+\end{theorem}
+(証明) $\forall x\in G$について正規部分群の定義から$xNx^{-1}=N$となるので$xN=Nx$が成立.
+
+\begin{theorem}
+     $G$を群, $G\rhd N$とする. $\lbrace a_\lambda\rbrace_{\lambda\in \Lambda}$が$G$の$N$に関する左完全代表系であるための必要十分条件は, $\lbrace a_\lambda\rbrace_{\lambda\in \Lambda}$が$G$の$N$に関する右完全代表系であることである.
+\end{theorem}
+(証明) $G=\coprod_{\lambda\in \Lambda}a_\lambda N=\coprod_{\lambda\in \Lambda}N a_\lambda$.
 
 \end{document}
