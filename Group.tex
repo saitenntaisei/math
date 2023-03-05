@@ -1,6 +1,6 @@
-\documentclass{article}
+\documentclass[dvipdfmx]{jsarticle}
 \usepackage[top=30truemm,bottom=30truemm,left=20truemm,right=20truemm]{geometry}
-\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{amsmath,amssymb}
 \usepackage[dvipdfmx]{graphicx}
 \usepackage[dvipdfmx]{hyperref}
 \usepackage{float}
@@ -13,25 +13,27 @@
 \pgfplotsset{compat=newest}
 \newlength\figHeight
 \newlength\figWidth
-\usepackage{hyperref}
 \usepackage{fancyhdr}
-\usepackage{graphicx,color}
+\usepackage{color}
 \usepackage{mathtools}
 \usepackage{amsthm}
 \usepackage{siunitx}
-\theoremstyle{plain}
-\newtheorem{theorem}{Theorem}
-\newtheorem*{theorem*}{Theorem}
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{thoerem*}{Theorem}
+\newtheorem{props}{Props}
+\newtheorem*{props*}{Props}
+\newtheorem{definition}{Def}
 
 
-\theoremstyle{plain}
+% \theoremstyle{plain}
 \newtheorem{note}{Note}
 \newtheorem*{note*}{Note}
 \numberwithin{equation}{section}
-\numberwithin{theorem}{section}
+\numberwithin{props}{section}
 \numberwithin{definition}{section}
 \numberwithin{note}{section}
 \hypersetup{%
@@ -42,6 +44,25 @@ setpagesize=false,
  linkcolor=blue,
  citecolor=red,
 }  
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Image}{Im}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\XX}{\mathbb{X}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ch}{\mathbb{ch}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Stab}{\mathrm{Stab}}
+\newcommand{\Ad}{\mathrm{Ad}}
+\newcommand{\coloniff}{:\Longleftrightarrow}
+\newcommand{\simord}{{\sim}}
 
 
 \pagestyle{fancyplain}
@@ -58,6 +79,8 @@ setpagesize=false,
 \renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
 \makeatother
 \begin{document}
+ 
+% \itshape\textsc{\textup{regular text} small caps}
 \maketitle
 %\setcounter{tocdepth}{2}
 %\setcounter{chapter}{0}
@@ -68,7 +91,7 @@ setpagesize=false,
 
 \clearpage
 %\renewcommand{\thesection}{\Roman{section}}
-
+% \upshape
 \section{二項演算の定義}
 集合$S\neq \emptyset$ を考える。$\forall a,b\in S$ に対して$\exists c \in S$ を対応させる法則つまり直積$S\times S$から$S$への写像を2項演算(law of composition)と呼ぶ. 記号的には
 \begin{align}
@@ -122,9 +145,9 @@ G3. \emph{逆元の存在} $\forall a\in G$についてある$b\in G$が存在�
 \end{enumerate}
 
 \section{群の性質}
-\begin{theorem}
+\begin{props}
      群$(G,\cdot)$に対して単位元はただ一つ存在
-\end{theorem}
+\end{props}
 
 証明: $e,e'\in G$を$G$の単位元としたとき($e$を群の定義から保証された単位元$e$に対してもう1つの単位元$e'$を考える)
 
@@ -133,9 +156,9 @@ G3. \emph{逆元の存在} $\forall a\in G$についてある$b\in G$が存在�
 \end{align}
 
 が成立.
-\begin{theorem}
+\begin{props}
      群$(G,\cdot)$に対して逆元はただ一つ存在
-\end{theorem}
+\end{props}
 
 
 証明: $\forall a\in G$についてある$b,c\in G$を$a$の逆元とすると
@@ -178,13 +201,13 @@ G3. \emph{逆元の存在} $\forall a\in G$についてある$b\in G$が存在�
           \item $\emptyset\subsetneq H\subset G$
      \end{enumerate}
 \end{definition}
-\begin{theorem}\label{thm::subgroup}
+\begin{props}\label{thm::subgroup}
      $(G, \cdot)$を群とし, $\emptyset\subsetneq H\subseteq G$とする. このとき, $(H, \cdot)$が$G$の部分群であることは, 以下が両方成立することに同値:
      \begin{enumerate}
           \item[SG1.]  $\forall a, b\in G$. $a, b\in H\implies a\cdot b\in H$
           \item[SG2.]  $\forall a\in G$. $a\in H \implies a^{-1}\in H$
      \end{enumerate}
-\end{theorem}
+\end{props}
 (証明)
 $\implies$: $(H, \cdot)$が$G$の部分群であるとする.\\
 \begin{itemize}
@@ -198,40 +221,40 @@ $\impliedby$: (SG1), (SG2)が成立しているとする.
      \item SG2よりDefnition~\ref{def::subgroup1}の3が成立.
      \item $\forall a\in H$についてSG1,SG2より$a^{-1}\in H$, $a\cdot a^{-1}=e$.
 \end{itemize}
-\begin{theorem}
+\begin{props}
      $H$を群$G$の部分群としたとき, $H$の単位元$e'$は$G$の単位元と一致する.
-\end{theorem}
+\end{props}
 (証明) ある$x\in G$が存在して$e'x=xe'=e$になるとする. $e'=e'e=e'e'x=e'x=e$.
-\begin{theorem}
+\begin{props}
      $H$を群$G$の部分群としたとき, $\forall a\in H$について$H$における逆元$a_H^{-1}$と$G$における逆元$a_G^{-1}$は一致する.
-\end{theorem}
+\end{props}
 (証明) $a_G^{-1}=ea_G^{-1}=a_H^{-1}aa_G{-1}=a_H^{-1}e=a_H^{-1}$.
-\begin{theorem}\label{them::subgroup3}
+\begin{props}\label{them::subgroup3}
      群Gの部分集合$H\neq \emptyset$に対し, 以下の3条件は同値である.
      \begin{enumerate}
           \item $H$は$G$の部分群.
           \item $\forall a,b \in H$に対して$ab\in H$かつ$ a^{-1}\in H$.
           \item $\forall a,b \in H$に対して$a^{-1}\cdot b\in H$.
      \end{enumerate}
-\end{theorem}
+\end{props}
 (証明) $1\implies 2$は部分群の定義から明らか. $2\implies 3$も明らか.
 $2\implies 1$は Theorem~\ref{thm::subgroup}と同じである.
 よって$3\implies 2$を示せばよい.
 $\forall a\in H$について$e=a^{-1}\cdot a\in H$が成立. ここで$a^{-1}\in G$は$a^{-1}\cdot a^{-1}\cdot a=a^{-1}\cdot e \in H$より$a^{-1}e=a^{-1}\in H$.
 よって$\forall a,b \in H$について$a^{-1}\in H$となり$a\cdot b=(a^{-1})^{-1}\cdot b\in H$.
-\begin{theorem}
+\begin{props}
      $H_1$,$H_2$を群$G$の部分群とするならば, $H_1\cap H_2$も$G$の部分群である.
-\end{theorem}
+\end{props}
 (証明) $\forall a,b\in H_1\cap H_2$について $a\cdot b\in H_1$かつ$a\cdot b\in H_2$. よって$a\cdot b\in H_1\cap H_2$.
 また$a^{-1}\in H_1$かつ$a^{-1}\in H_2$. よって$a^{-1}\in H_1\cap H_2$. したがって$H_1\in H_2$は$G$の部分群となる.
-\begin{theorem}
+\begin{props}
      Gを群とし$\emptyset \subsetneq H\subseteq G$とする。このとき以下3条件は互いに同値
      \begin{enumerate}
           \item HはGの部分群
           \item $(HH\subseteq H)$かつ$H^{-1}\subseteq H$
           \item $H^{-1}H\subseteq H$
      \end{enumerate}
-\end{theorem}
+\end{props}
 (証明) これは Theorem~\ref{them::subgroup3}の言い換えである.
 \begin{definition}
      $G$を群とし$S$を$G$の部分集合とする。このとき$S$を含む最小の部分群を$\langle S \rangle$と書く。これを$S$から生成される部分群と呼ぶ.
@@ -265,14 +288,14 @@ $\forall a\in H$について$e=a^{-1}\cdot a\in H$が成立. ここで$a^{-1}\in
 (証明) 十分性は明らか. 必要性について示す.
 % $\forall a \in N, \forall x\in G$について$x^{-1}\in G$よりある$b\in G$が存在して$b=x^{-1}ax=x^{-1}a(x^{-1})^{-1}\in N$. $xbx^{-1}=a$より, $\forall a \in N,\forall x \in G$についてある$b\in N$が存在して$xbx^{-1}=a$となることが示された. よって$\forall xNx^{-1}=N$.
 $\forall x \in G$について$x^{-1}\in G$より$x^{-1}N(x^{-1})^{-1}\subseteq N$. よって$N\subseteq xNx^{-1}$である. 正規部分群の定義もあわせると$xNx^{-1}=N$となる.
-\begin{theorem}
+\begin{props}
      $G$を群, $H$を$G$の部分群とする. このとき次が成立する.
      \begin{enumerate}
           \item $G\rhd H\iff N(H)=G$
           \item $G\supseteq N(H)\rhd H$
           \item $G\rhd Z(G)$
      \end{enumerate}
-\end{theorem}
+\end{props}
 (証明)1について. $\forall x \in G$について$xHx^{-1}=H$ならば$N(H)=\lbrace x\in G\mid xHx^{-1}=H\rbrace=G$となる. $G=N(H)=\lbrace x\in G\mid xHx^{-1}=H\rbrace$ならば$\forall x\in G$について$xHx^{-1}=H$なので$G\rhd H$.
 2について. $N(H)=\lbrace x\in G\mid xHx^{-1}=H\rbrace \subseteq G$は明らか. $\forall x \in N(H)$について$N(H)$の定義より$xHx^{-1}=H$. よって$N(H)\rhd H$.
 3について. $Z(G)=\lbrace x\in G\mid \forall s\in G, xsx^{-1}=a$より, $\forall a\in Z(G),\forall x \in G$について$axa^{-1}=x$となる. これを変形すると$a=xax^{-1}$となる. よって$xZ(G)x^{-1}=Z(G)$となり$G\rhd Z(G)$が示された.
@@ -292,14 +315,14 @@ $\forall x \in G$について$x^{-1}\in G$より$x^{-1}N(x^{-1})^{-1}\subseteq N
      \begin{align}
           H:=\lbrace a^n\mid n\in \mathbb{Z}\rbrace
      \end{align}
-     としたとき$H=\langle a\rangle$とかき, $a$から生成される元$H$とよぶ. $H$の位数を$a$の\emph{位数}とよび $\mathrm{ord}\,a$とかく. $\mathrm{ord}\,a$が有限なとき$a^n=e$となるような最小の自然数$n$と等しい. $G=\langle a\rangle$となるとき$G$を\emph{巡回群}とよび, $a$を$G$の\emph{生成元}という. 巡回群は可換群であることは明らか.
+     としたとき$H=\langle a\rangle$とかき, $a$から生成される元$H$とよぶ. $H$の位数を$a$の\emph{位数}とよび $\ord a$とかく. $\ord a$が有限なとき$a^n=e$となるような最小の自然数$n$と等しい. $G=\langle a\rangle$となるとき$G$を\emph{巡回群}とよび, $a$を$G$の\emph{生成元}という. 巡回群は可換群であることは明らか.
 \end{definition}
 \begin{note}
      巡回群の生成元は一意に決まらない. $\mathbb{Z}=\langle 1\rangle=\langle-1\rangle$.
 \end{note}
-\begin{theorem}
+\begin{props}
      巡回群の部分群は巡回群である.
-\end{theorem}
+\end{props}
 (証明) 巡回群$G$と$G$の部分群を$H$とする. $H=\lbrace e\rbrace$であるとき$H$は明らかに巡回群である.
 $H\neq \lbrace e\rbrace$とする. $G$の生成元を$a$とし, $a^n\in H$となるような$n$のうち最小なものについて考える. $\forall a^m \in H$について, 剰余の定理より$m=qn+r$である. 
 よって$a^r= a^m\cdot a^{-qn}$であるが, $n$の最小性より$r>0$ならば$r\geq n$であるので$r=0$.
@@ -307,14 +330,14 @@ $H\neq \lbrace e\rbrace$とする. $G$の生成元を$a$とし, $a^n\in H$とな
 \begin{definition}
      $n,t$を2つの整数とする. $n$が$t$で割り切るとき$n\mid t$とかく.
 \end{definition}
-\begin{theorem}\label{them::n|t}
-     群$G$の元$x$が$\mathrm{ord}\, x=n <\infty$であるとする. 整数$t$に対し$x^t=e$となるための必要十分条件は$n\mid t$となることである.
-\end{theorem}
+\begin{props}\label{them::n|t}
+     群$G$の元$x$が$\ord  x=n <\infty$であるとする. 整数$t$に対し$x^t=e$となるための必要十分条件は$n\mid t$となることである.
+\end{props}
 (証明)$n$の定義より$t\leq n$である. 剰余の定理より$t=nq+r$である. よって$e=a^t=a^{nq}\cdot a^r=e\cdot a^r=a^r$となる. $n$の最小性より$r> 0$ならば$r\geq n$であるので$r=0$. よって$n\mid t$.
-\begin{theorem}
+\begin{props}
     $G=\langle a\rangle$を位数$n<\infty$(有限) の巡回群とする. $m\mid n$となる自然数$m$に対し, 位数$m$の部分群が唯一つ存在する. 
-\end{theorem}
-(証明) $m\mid n$となる$m$について$\langle n/m\rangle$は位数$m$の部分群である. もうひとつ位数$m$の部分群$H$があるとする. $a^k\in H$となるような最小の自然数$k$をとると$H=\langle a^k \rangle$となる. $\mathrm{ord}\, a^k=m$より$a^{km}=e$となる. このとき定理~\ref{them::n|t}より $n\mid km$である. $m\mid n$より$(n/m)\mid k$となる. $k= tn/m$とすると，$(a^{k/t})^m=e$となる. $k$の最小性より$t=1$となる. よって$k=n/m$. 位数$m$の部分群が唯一つしか存在しないことが示された.
+\end{props}
+(証明) $m\mid n$となる$m$について$\langle n/m\rangle$は位数$m$の部分群である. もうひとつ位数$m$の部分群$H$があるとする. $a^k\in H$となるような最小の自然数$k$をとると$H=\langle a^k \rangle$となる. $\ord  a^k=m$より$a^{km}=e$となる. このとき定理~\ref{them::n|t}より $n\mid km$である. $m\mid n$より$(n/m)\mid k$となる. $k= tn/m$とすると，$(a^{k/t})^m=e$となる. $k$の最小性より$t=1$となる. よって$k=n/m$. 位数$m$の部分群が唯一つしか存在しないことが示された.
 \section{剰余類}
 \begin{definition}
      集合$S$において, 関係$\sim$が定義されていて, 任意の二元$x,y\in S$に対し$x\sim y$または$x\sim y$でないかが成立し, かつ次の3条件を満たすとき関係$\sim$を同値関係という.
@@ -347,65 +370,65 @@ $H\neq \lbrace e\rbrace$とする. $G$の生成元を$a$とし, $a^n\in H$とな
      \end{align}
      と書ける. $\lvert \Lambda\rvert=(G:H)$であるのは定義より明らか.
 \end{definition}
-\begin{theorem}
+\begin{props}
      $G$を群, $H$をその部分群とするとき, $G$の$H$に関する左剰余類に含まれる元の数は全て等しく, $\lvert H\rvert$個である.
-\end{theorem}
+\end{props}
 (証明) 写像
 \begin{align}
      H&\to aH\\
      x&\mapsto ax
 \end{align}
 は集合としての上への1対1写像である. したがって$\lvert aH\rvert =\lvert H\rvert$.
-\begin{theorem}\label{them::lagrange}
+\begin{props}\label{them::lagrange}
      $G$を群, $H$をその部分群とするとき, $\lvert G\rvert=(G:H)\lvert H\rvert$が成り立つ. これはラグランジュの定理と呼ばれることがある.
-\end{theorem}
+\end{props}
 (証明) $\lvert G\rvert=\bigcup_{\lambda\in \Lambda}\lvert a_\lambda H\rvert=\bigcup_{\lambda \in \Lambda}\lvert H\rvert=\lvert G/H\rvert \lvert H\rvert$
 
-\begin{theorem}
+\begin{props}
      $G$を有限群, $H$をその部分群とすれば, 次が成立する.
      \begin{enumerate}
           \item $H$の位数$\lvert H\rvert$は$G$の位数$\lvert G\rvert$の約数である.
           \item $G$の元の位数は$G$の位数$\lvert G\rvert$の約数である.
      \end{enumerate}
-\end{theorem}
+\end{props}
 (証明) 1は定理~\ref{them::lagrange}より明らか.
 2は$\forall a\in G$について$\langle a\rangle$は$G$の部分群となるので$\lvert \langle a\rangle \rvert$は$\lvert G\rvert$の約数. よって成立.
 
-\begin{theorem}
+\begin{props}
      $G$を群, $H\supseteq K$をGの部分群とする. $\lbrace a_\lambda \rbrace_{\lambda \in \Lambda}$を$G$の$H$に関する左完全代表系, $\lbrace b_\mu \rbrace_{\mu \in M}$を$H$の$K$に関する左完全代表系とする. このとき$\lbrace a_\lambda b_\mu\rbrace_{\lambda\in \Lambda,\mu\in M}$は$G$の$K$に関する左完全代表系である.
-\end{theorem}
+\end{props}
 (証明) $\forall x\in G$について, ある$a_\lambda$,$h\in H$が存在して, $x=a_\lambda h$となる. 同様にある$b_\mu$,$k\in K$が存在して, $h=b_\mu k$となる. したがって$x\in \lbrace a_\lambda b_\mu\rbrace K$である. つまり, $xK= \lbrace a_\lambda b_\mu\rbrace K$. 次に$\lbrace a_\lambda b_\mu K\rbrace_{\lambda\in \Lambda,\mu\in M}$は相異なる左剰余類を表すことを示す.
 $a_\lambda b_\mu K=a_{\lambda'}b_{\mu'}K$とする. ある$k\in K$が存在して$a_\lambda b_\mu=a_{\lambda'}b_{\mu'}k$となる. よって$a_\lambda=a_{\lambda'}(b_{\mu'}k{b_\mu}^{-1})$となるが$b_{\mu'}k{b_\mu}^{-1}\in H$となり, $G$に関する$H$の左完全代表系は相異なるので$a_\lambda=a_{\lambda'}$となる. よって$\lambda=\lambda'$となり, 同様にして$\mu=\mu'$も求められる. したがって$\lbrace a_\lambda b_\mu\rbrace_{\lambda\in \Lambda,\mu\in M}$は$G$の$K$に関する左完全代表系である. 
-\begin{theorem}
+\begin{props}
      $G$を群, $H\supseteq K$を$G$の部分群とすれば,
      \begin{align}
           (G:K)=(G:H)(H:K)
      \end{align}
      が成り立つ.
-\end{theorem}
+\end{props}
 (証明) $\lvert G/K\rvert =\lvert \bigcup_{\lambda\in \Lambda,\,\mu\in M}a_\lambda b_\mu\rvert=\lvert \bigcup_{\lambda\in \Lambda}a_\lambda\rvert\lvert \bigcup_{\mu\in M}b_\mu\rvert$
 
 \subsection{右との同値性}
 \emph{右合同}や\emph{右剰余類}の定義は省略する.
-\begin{theorem}
+\begin{props}
      $G$を群, $H$をその部分群とする. $\lbrace a_\lambda\rbrace_{\lambda\in \Lambda}$が$G$の
-     $H$に関する左完全代表系であるための必要十分条件は, $\lbrace a_\lambda^{-1}\rbrace_{\lambda\in \Lambda}$が$G$の$H$に関する右完全代表系であることである.
-\end{theorem}
+     $H$に関する左完全代表系であるための必要あ十分条件は, $\lbrace a_\lambda^{-1}\rbrace_{\lambda\in \Lambda}$が$G$の$H$に関する右完全代表系であることである.
+\end{props}
 (証明) 集合の直和を$\coprod$とかく. $G=G^{-1}$,$H=H^{-1}$より
 \begin{align}
      G=\coprod_{\lambda\in \Lambda}a_\lambda H=\coprod_{\lambda\in \Lambda}(a_\lambda H)^{-1}=\coprod_{\lambda\in \Lambda}H^{-1}a_\lambda^{-1}
 \end{align}
 となる.
 
-\begin{theorem}
+\begin{props}
      $G$を群, $G\rhd N$とする. $G$の$N$に関する右剰余類と左剰余類は一致する. 
      詳しくは$xN=Nx$が成立する.
-\end{theorem}
+\end{props}
 (証明) $\forall x\in G$について正規部分群の定義から$xNx^{-1}=N$となるので$xN=Nx$が成立.
 
-\begin{theorem}
+\begin{props}
      $G$を群, $G\rhd N$とする. $\lbrace a_\lambda\rbrace_{\lambda\in \Lambda}$が$G$の$N$に関する左完全代表系であるための必要十分条件は, $\lbrace a_\lambda\rbrace_{\lambda\in \Lambda}$が$G$の$N$に関する右完全代表系であることである.
-\end{theorem}
+\end{props}
 (証明) $G=\coprod_{\lambda\in \Lambda}a_\lambda N=\coprod_{\lambda\in \Lambda}N a_\lambda$.
 \subsection{剰余群}
 \begin{definition}
@@ -415,7 +438,7 @@ $a_\lambda b_\mu K=a_{\lambda'}b_{\mu'}K$とする. ある$k\in K$が存在し�
      \end{align}
      で定義する. この積が代表元のとり方によらず一意的に定まることを示す.
 
-     (証明) $a'$を類$aN$のもう一つの代表元, $b'$を類$bN$のもう一つの代表元とする.
+     (証明) $a'$を類$aN$のもう1つの代表元, $b'$を類$bN$のもう1つの代表元とする.
      このとき$aN=a'N$,$bN=b'N$であり, $a'=an_1$, $b'=bn_2$となるような$n_1,n_2\in N$が存在する.
      よって$a'N\cdot b'N=a'b'N=an_1bn_2N=ab(b^{-1}n_1b)N=ab$. となり, 積は一意的に定まることが分かる.
 
@@ -438,4 +461,104 @@ $a_\lambda b_\mu K=a_{\lambda'}b_{\mu'}K$とする. ある$k\in K$が存在し�
      を満たすとき, $f$を\emph{準同型写像}という.
 \end{definition}
 全射準同型写像かつ単射準同型写像であるものは同型写像といい$G\cong G$とかく. 同型な群の代数構造はまったく同じである.
-\end{document}
+\begin{props}
+     群$G$の単位元を$e$, 群$G'$の単位元$e'$とする. 準同型写像$f\colon G\to G'$が単射であるための必要十分条件は, $f(x)=e'$であるならば$x=e$が成り立つことである. 
+\end{props}
+(証明) 必要性について示す. $\forall x\in G$について$e'=f(x)f(x)^{-1}=f(x)f(x^{-1})=f(xx^{-1})=f(e)$となる. $f$は単射なので$f(x)=e'$となるような$x$は$x=e$のみである. 次に十分性について示す.
+$\forall x,x'\in G$について$f(x)=f(x')$となるとき, $e'=f(x)f(x')^{-1}=f(x)f(x'^{-1})=f(xx'^{-1})$. $e'=f(x)$となるならば$x=e$なので$xx'^{-1}=e$である. よって$x=x'$となり, $f$は単射であることが示された.
+
+\begin{definition}
+     $G,G'$を群, $e'$を$G'$の単位元とする. 群の準同型写像$f\colon G\to G'$に対して,
+     \begin{align}
+          \Ker f&:=\lbrace x\in G\mid f(x)=e'\rbrace\\
+          \Image f&:=\lbrace f(x)\in G'\mid x\in G\rbrace
+     \end{align}
+     と定義する. $\Ker f$を$f$の核, $\Image f$を$f$の像という.
+\end{definition}
+\begin{props}
+     群の準同型写像$f\colon G\to G'$に対して, $\Ker f$は$G$の正規部分群, $\Image f$は$G'$の部分群である.
+\end{props}
+$\Ker f$が群であることの証明. $\forall a,b\in \Ker f$について$f(ab)=f(a)f(b)=e'=f(e)$. よって$ab^\in \Ker f$. また, $f(a^{-1})=f(a)^{-1}=e'=f(e)$より$a^{-1}\in \Ker f$. よって$\Ker f$は$G$の部分群である. $f(xax^{-1})=f(x)e'f(x^{-1})=f(xx^{-1})=e'$. よって$xax^{-1}\in \Ker f$. 
+$\forall f(x),f(y)\in \Image f$について$f(x)f(y)=f(xy)\in \Image f$,$f(x)^{-1}=f(x^{-1})\in \Image f$なので$\Image f$は$G$の部分群である.
+
+
+\begin{props}
+     群の準同型写像$f\colon G\to G'$は自然な同型写像
+     \begin{align}
+          \phi:\quad G/\Ker f&\cong \Image f\\
+          x\Ker f&\mapsto f(x)
+     \end{align}
+     を引き起こす. これを第一準同型定理と呼ぶ.
+\end{props}
+(証明) $\forall x\Ker , \forall y\Ker \in G$について$x,y\in G$より$\phi( x\Ker)\phi( y\Ker)=f(x)f(y)=f(xy)=\phi( xy\Ker)$.よって$\phi$は準同型写像である. 全射性を示す. $\forall f(x)\in \Image f$について$f$の像の定義よりある$x\in G$は存在する. つまりある$x\Ker \in G/\Ker $が存在. 単射性について示す.
+$\phi(x\Ker )=f(x)=e'\in G'$ならば, $f$の核の定義より$x\in \Ker f$. よって$x\Ker f=\Ker f$となり$G/\Ker f$の単位元なので$f$は単射であることが示された. 
+\section{シローの定理}
+\begin{props}~\label{props::shiro}
+     $G$を有限群, $n= \lvert G\rvert$, $p$を$n$の素因数とし, $p^a(a>0)$を$n$で割り切る$p$の最大べきとする. つまり$n=p^a m$で$m$は$p$と互いに素である. このとき以下が成立する. 
+     \begin{enumerate}
+          \item $G$の部分群$H$で$\lvert H\rvert=p^a$となるものがある.このような部分群$H$をシロー$p$部分群という.
+          \item シロー$p$部分群$H$を一つ固定する. $K\subseteq G$が部分群で$\lvert K\rvert$が$p$べきなら, ある$g\in G$が存在し, $K\subseteq gHg^{-1}$となる. 特に$K$を含む$G$のシロー$p$部分群がある.
+          \item $G$のすべてのシロー$p$部分群は共役である.
+          \item シロー$p$部分群の数$s$は$s=\lvert G\rvert/\lvert N_G\rvert\equiv 1 \pmod 1$という条件を満たす. 
+     \end{enumerate}
+\end{props}
+(証明) 
+\begin{enumerate}
+     \item $G$の部分群$H$で$\lvert H\rvert=p^a$となるものがあることの証明.\\
+     $\XX$は元の個数が$p^a$である$G$の部分集合全体である.$\XX:=\lbrace S\mid S\subseteq G,\lvert S\rvert=p^a\rbrace$.
+     $k := \lvert \XX\rvert$は$p$で割り切れないとする. $p\nmid k$であるとする.
+     $G$による$\XX$の軌道は$O(S)(S\in \XX)$である. 系4.1.22より$\forall S,T\in \XX$について$O(S)=O(T)$なら$S\sim T$を定義するとこの同値関係は$G$による$\XX$の軌道と一対一に対応する.
+     よってそれぞれの異なる軌道の間には共通部分はない. ここから$\XX$は$G$による$\XX$の軌道の直和となるのである$S\in \XX$が存在して$p\nmid O(S)$となる.
+     $H:=\Stab(S)$とする. 命題4.5.4より$\lvert \Stab(S)\rvert$は$\lvert S\rvert=p^a$の約数である.
+     命題4.1.23より$\lvert O(S)\rvert=\lvert G/H\rvert=\lvert G\rvert/\lvert H\rvert = p^am/\lvert H\rvert$ $O(S)$は$p$で割り切れないので$\lvert H\rvert=p^a$. 
+     $p\nmid k$となることの証明.
+     $\XX$は元の個数が$p^a$である$G$の部分集合全体の集合なので
+     \begin{align}
+     \lvert\XX\rvert &= \frac{n(n-1)\cdots(n-(p^a-1))}{p^a(p^a-1)\cdots (p^a - (p^a - 1))}\cr
+     &= \prod_{i=0}^{p^a-1} \frac{n-i}{p^a-i}\\
+     &=\frac{n}{p^a}\prod_{p\nmid i,1\leq i<p^a} \frac{mp^a-i}{p^a-i}\prod_{p\mid i,1\leq i<p^a}^{p^a-1} \frac{mp^a-i}{p^a-i}\\
+     \end{align}
+     $p^am - i \equiv p^a - i\pmod {p^a}$より$\prod_{p\nmid i,1\leq i<p^a} \frac{mp^a-i}{p^a-i}$は$p$で割り切れない.
+     $\prod_{p\mid i,1\leq i<p^a}^{p^a-1} \frac{mp^a-i}{p^a-i}=\prod_{t=0}^{a-1} \frac{mp^a-p^t}{p^a-p^t}=\prod_{t=0}^{a-1} \frac{mp^{a-t}-1}{p^{a-t}-1}$より$p$で割り切れない.
+     $\frac{n}{p^a}=m$より$p$で割り切れない.
+     よって$p\nmid \binom{\lvert G\rvert}{p^a}=\lvert\XX\rvert$が示せた.
+     \item[2, 3.] 任意のシロー$p$部分群$H$について$\forall K\subseteq G$が部分群で$\lvert K\rvert=p^a (a>0)$であるとする. $Y:= G/H$についてラグランジュの定理より$\lvert Y\rvert = \lvert G\rvert/\lvert H\rvert=m$となり$p$で割り切れない. 系4.1.22より$\forall s,t \in Y$について$K\cdot s=K\cdot t$ならば$s\sim t$とするとこの同値関係は$K$による$Y$の元の軌道と一対一に対応する. よって$Y$は$K$による$Y$の元の軌道の直和となるので, ある$gH\in Y$について, そのKによる軌道の元の個数$q$が$p$で割り切れないものが存在する. しかし, 命題4.1.23より$q$は$\lvert K\rvert$の約数なので, $q\neq 1$でない限り$p\mid q$である. よってこのとき$q=1$である. $K$は左からの積により$Y$に作用する. よって$q=1$ならば
+     $\forall k\in K$について$kgH=egH=gH$. $\forall h_1\in H$についてある$h_2\in H$が存在して$kgh_1=gh_2$となるので$k= gh_2h^{-1}_1g^{-1}\in gHg^{-1}$となる. よって$K\subseteq gHg^{-1}$となる. $\lvert gHg^{-1}\rvert=p^a$であり$gHg^{-1}$は部分群でもあるのでシロー$p$部分群となる. もし$K$もシロー$p$部分群だとすると, $\lvert K\rvert=\lvert gHg^{-1}\rvert$より, $K=gHg^{-1}$である. よって$K$と$H$は共役となる.
+     \item $G$のシロー$p$部分群は共役なので任意のシロー$p$部分群$H$について命題4.5.6より$G$ののシロー$p$部分群の数$s$は$s=\lvert G/N_G(H)\rvert=\lvert G\rvert/\lvert N_G(H)\rvert$.
+     $s=1$であることの証明.\\
+     $\ZZ=\lbrace H=H_1,H_2,\ldots,H_s\rbrace$をシロー$p$部分群全体の集合とする.
+$H$は$\ZZ$に共役により作用する. $O(H_i)=\lbrace H_i\rbrace$ならば$i=1$であることを示す.$O(H_i)=\lbrace H_i\rbrace\implies \forall h\in H, hH_ih^{-1}=H_i$.これは$h\in N_G(H_i)$の定義と一致するので$H\subseteq N_G(H_i)$.$N_G(H_i)$と正規部分群の定義より$H_i\lhd N_G(H_i)$であり$N_G(H_i)$は部分群なので$\lvert N_G(H_i)\rvert$は$\lvert G\rvert$の約数なので$H,H_i$は$N_G(H_i)$のシロー$p$部分群である. すべての$p$部分群は共役なのである$g\in N_G(H)$が存在して, $H=gH_ig^{-1}$となる. さらに$H_i\lhd N_G(H_i)$より$H=H_i$.よって$i=1$.
+ 
+ $\ZZ$を$H$の作用による軌道の直和で表すと, $i\neq 1$ならば$H_i$の軌道の元の個数は命題4.1.23より$\lvert H\rvert=p^a$の約数となり$i\neq 1 \implies i>1$. よって$p$で割り切れる. $H$の軌道はひとつの元よりなるので, 軌道が同地関係と一対一に対応することを踏まえると$s\equiv 1 \pmod p$となる.
+\end{enumerate}
+\begin{note}
+     Props~\ref{props::shiro}は$a=0$でも成立する. $a=0$ならば$G=\lbrace e\rbrace$となるため.
+\end{note}
+\section{有限アーベル群の基本定理}
+\begin{props}
+     $p$群かつアーベル群である $G$ について $G\cong\ZZ/p^{a_1}\ZZ\times\cdots\times\ZZ/p^{a_n}\ZZ$
+\end{props}
+(証明) Gは$p$群であるので$\lvert G\rvert = p^t$. $t$に関する数学的帰納法を用いる.  $t=1$のときProps.1より$G\cong\ZZ/p\ZZ$.$t\leq k$のとき$G\cong\ZZ/p^{a_1}\ZZ\times\cdots\times\ZZ/p^{a_n}\ZZ$であると仮定する.
+$t=k+1$のとき$G$の単位元でない元$g$をとり, $H:=\langle g\rangle$とする. ラグランジュの定理より$\lvert G/H\rvert = p^m(m\in \NN,0\leq m<k+1)$である. $m=0$のときは$G=\langle g \rangle$となりアーベル群であるので$G\cong \ZZ/p^t\ZZ$となる. $1\leq m<k+1$のときは仮定より$G/H \cong \ZZ/p^{a_1}\ZZ\times\cdots\times\ZZ/p^{a_n}\ZZ$, $H\cong\ZZ/p^{n-m}\ZZ$. 
+$G$はアーベル群なので$G\rhd H$,$G\rhd G/H$. $\forall xg^n \in G$についてある$g^n \in H$,$x\in G/H$が存在して, $xg^n = x\cdot g^n$となる. よって$G= G/H\cdot H$.
+また$G/H\bigcap H = \lbrace e\rbrace$. よって$G=G/H\times H$. $G\cong\ZZ/p^{a_1}\ZZ\times\cdots\times\ZZ/p^{a_n}\ZZ$.
+\begin{props}
+     $G$を有限アーベル群とする. 素数$p_1,\ldots,p_t$(重複を許す)と正の整数$a_1,\ldots,a_t$があり,
+     \begin{align}
+          G\cong \ZZ/p_1^{a_1}\ZZ\times\cdots\times\ZZ/p_t^{a_t}\ZZ
+     \end{align}
+     となる. また,$p_1^{a_1},\cdots,p_t^{a_t}$は順序を除いて一意的に定まる.
+\end{props}
+(証明) 
+$\lvert G\rvert =p_1^{e_1}p_2^{e_2}\cdots p_n^{e_n}$とする.ただし$p_i$は素数. $n=1$のときProps.2より$G\cong \ZZ/p_1^{b_1}\ZZ\times\cdots\times\ZZ/p_1^{b_n}\ZZ$. $n=k$のとき成立すると仮定する. $n=k+1$のとき$\lvert G\rvert=n=p_{k+1}^am,(a>0)$と表せる.$p_{k+1}$と$m$は互いに素である. $g\in G$とするとき, 位数がそれぞれ$p^a,m$の約数の元$x,y$が存在し, $g=x+y$とかけることを示す. $p^a$,$m$は互いに素なので $p^a\alpha+m\beta=1$となる整数$\alpha,\beta$が存在する. $x=m\beta g,y=p^a\alpha g$とおくと, $g=(p^a\alpha+m\beta)g=x+y$となり, $p^ax=p^am\beta g= (p^am)\beta g=0$,$my= mp^a\alpha g=(mp^a)\alpha g=0$. よって$x,y$の位数はそれぞれ$p^a,m$の約数である.
+$H=\lbrace x\in G\mid p^ax=0\rbrace$,$K=\lbrace x\in G\mid mx=0\rbrace$とすると, $H,K$は部分群である. $z\in H\cap K$ならば$p^a z=mz=0$となり, $z=(p^a\alpha+m\beta)z=0$. よって, $H\cap K=\lbrace 0\rbrace$である. 上で$H+K=G$となることを示したので (雪江代数 p.60 命題2.9.2, 桂代数学1 p.29 定理1.6.2)より$G\cong H\times K$. $H$は$G$の位数が$p$べきの部分群をすべて含み,$H$は位数が$p$と素な部分群をすべて含む. よって$\lvert H\rvert=p_{k+1}^{e_{k+1}}$,$\lvert K\rvert=p_1^{e_1}p_2^{e_2}\cdots p_k^{e_k}$となり, 数学的帰納法より$G\cong \ZZ/p_1^{a_1}\ZZ\times\cdots\times\ZZ/p_t^{a_t}\ZZ$が成立.
+
+一意性についても同様の数学的帰納法でいえるので$\lvert G\rvert=p^n$に関してのみ示せばよい.
+$G\cong\ZZ/p^{a_1}\ZZ\times\cdots\times\ZZ/p^{a_n}\ZZ$,$a_i \geq a_j (i<j)$とし$a=a_1$
+$G^* = \lbrace a\in G\mid aの位数は高々 p^{a-1}\rbrace$
+とおく. このとき$G^*$は$G$の直積因子のうち, $\ZZ/p^e\ZZ$なるものを直積の定義を踏まえると$\ZZ/p^{e-1}\ZZ$で置き換えたものである. よって帰納法の仮定より, $G^*$に対する不変量の組である$( p^{e-1},p^{e-1},\cdots,p^{e_s},p^{e_{s+1}},p^{e_{s+2}},\cdots,p^{e_t})$が定まる. 他方
+\begin{align}
+G/G^*\cong (\ZZ/p\ZZ)\times (\ZZ/p\ZZ)\quad \mathrm{s個の直積}
+\end{align}
+であるから, $s$もさだまる. よって$G$より$\lbrace p^{e_1},p^{e_2},\cdots,p^{e_s},p^{e_{s+1}},\cdots,p^{e_t}\rbrace$が一意的に定まる.
+\end{document} 
